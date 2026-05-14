@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WISE PVP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:#000;
+color:#fff;
+overflow:hidden;
+height:100vh;
+width:100vw;
+}
+
+.app{
+width:100%;
+height:100vh;
+max-width:430px;
+margin:0 auto;
+background:#000;
+position:relative;
+overflow:hidden;
+}
+
+.page{
+display:none;
+height:calc(100vh - 92px);
+overflow-y:auto;
+padding:20px 18px 120px;
+scrollbar-width:none;
+-ms-overflow-style:none;
+}
+
+.page::-webkit-scrollbar{
+display:none;
+}
+
+.page.active{
+display:block;
+}
+
+.topbar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:18px;
+}
+
+.logo{
+font-size:28px;
+font-weight:900;
+line-height:1;
+}
+
+.logo span{
+color:#ff1e1e;
+display:block;
+margin-top:4px;
+}
+
+.balance-actions{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.balance-box{
+background:#0d0d0d;
+border:1px solid #1e1e1e;
+border-radius:18px;
+padding:12px 18px;
+font-weight:800;
+font-size:16px;
+}
+
+.circle-btn{
+width:48px;
+height:48px;
+border-radius:16px;
+background:#ff1e1e;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.notify-btn{
+background:#0d0d0d;
+border:1px solid #222;
+position:relative;
+}
+
+.notify-dot{
+position:absolute;
+width:8px;
+height:8px;
+border-radius:50%;
+background:#ff1e1e;
+right:12px;
+top:10px;
+}
+
+.online-history{
+display:flex;
+gap:12px;
+margin-bottom:20px;
+}
+
+.online-box,.history-box{
+flex:1;
+background:#0b0b0b;
+border:1px solid #1d1d1d;
+border-radius:18px;
+padding:16px;
+font-size:16px;
+}
+
+.online-dot{
+width:9px;
+height:9px;
+background:#ff1e1e;
+border-radius:50%;
+display:inline-block;
+margin-right:8px;
+}
+
+.bank-box{
+background:linear-gradient(180deg,#120000,#050505);
+border:1px solid #ff1e1e;
+box-shadow:0 0 35px rgba(255,0,0,.15);
+border-radius:26px;
+padding:22px;
+margin-bottom:18px;
+}
+
+.bank-title{
+font-size:16px;
+opacity:.8;
+margin-bottom:12px;
+}
+
+.bank-amount{
+font-size:64px;
+font-weight:900;
+line-height:1;
+}
+
+.timer-wrap{
+display:flex;
+justify-content:center;
+margin:20px 0 14px;
+}
+
+.timer-pill{
+background:#ff1e1e;
+padding:12px 28px;
+border-radius:999px;
+font-size:26px;
+font-weight:900;
+box-shadow:0 0 25px rgba(255,0,0,.4);
+}
+
+.wheel-wrap{
+position:relative;
+width:100%;
+display:flex;
+justify-content:center;
+margin-bottom:22px;
+}
+
+.pointer{
+position:absolute;
+top:-12px;
+width:0;
+height:0;
+border-left:16px solid transparent;
+border-right:16px solid transparent;
+border-top:28px solid #fff;
+z-index:2;
+}
+
+.wheel{
+width:360px;
+height:360px;
+border-radius:50%;
+background:conic-gradient(
+#ffffff 0deg 210deg,
+#7a0000 210deg 255deg,
+#ff6b6b 255deg 290deg,
+#c40000 290deg 330deg,
+#3a3a3a 330deg 360deg
+);
+border:8px solid #ff1e1e;
+position:relative;
+box-shadow:0 0 40px rgba(255,0,0,.25);
+}
+
+.wheel-center{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+width:150px;
+height:150px;
+border-radius:50%;
+background:#000;
+border:6px solid #111;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:42px;
+font-weight:900;
+}
+
+.bet-controls{
+display:flex;
+gap:10px;
+margin-bottom:14px;
+}
+
+.bet-input{
+flex:1;
+height:56px;
+background:#0d0d0d;
+border:1px solid #222;
+border-radius:18px;
+color:#fff;
+padding:0 18px;
+font-size:18px;
+font-weight:700;
+outline:none;
+}
+
+.bet-btn{
+background:#111;
+border:1px solid #222;
+color:#fff;
+min-width:76px;
+border-radius:16px;
+font-weight:700;
+font-size:16px;
+}
+
+.place-bet{
+height:62px;
+background:#ff1e1e;
+border:none;
+width:100%;
+border-radius:20px;
+font-size:22px;
+font-weight:900;
+color:#fff;
+margin-bottom:10px;
+}
+
+.minbet{
+text-align:center;
+opacity:.7;
+font-size:14px;
+margin-bottom:20px;
+}
+
+.hash-box{
+background:#090909;
+border:1px solid #1d1d1d;
+border-radius:22px;
+padding:18px;
+}
+
+.hash-title{
+color:#ff2a2a;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.hash-value{
+font-size:12px;
+opacity:.7;
+line-height:1.7;
+word-break:break-all;
+}
+
+.chat-tabs,.top-tabs{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+.tab-active{
+background:#ff1e1e;
+color:#fff;
+}
+
+.tab{
+flex:1;
+height:48px;
+border-radius:16px;
+border:none;
+background:#0e0e0e;
+color:#999;
+font-size:16px;
+font-weight:700;
+}
+
+.chat-list{
+display:flex;
+flex-direction:column;
+gap:14px;
+}
+
+.chat-item{
+background:#0b0b0b;
+border:1px solid #171717;
+border-radius:20px;
+padding:14px;
+display:flex;
+gap:12px;
+}
+
+.avatar{
+width:54px;
+height:54px;
+border-radius:50%;
+background:#222;
+flex-shrink:0;
+}
+
+.chat-content{
+flex:1;
+}
+
+.chat-name{
+font-weight:700;
+display:flex;
+align-items:center;
+gap:8px;
+margin-bottom:6px;
+}
+
+.vip-tag{
+background:#4f0000;
+color:#ff5757;
+padding:4px 10px;
+border-radius:999px;
+font-size:12px;
+font-weight:800;
+}
+
+.chat-msg{
+opacity:.9;
+font-size:15px;
+}
+
+.system-msg{
+border:1px solid #6f0000;
+background:linear-gradient(180deg,#170000,#0b0b0b);
+}
+
+.chat-input-wrap{
+position:fixed;
+bottom:92px;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:430px;
+padding:0 18px 12px;
+background:linear-gradient(to top,#000 75%,transparent);
+}
+
+.chat-input-box{
+display:flex;
+gap:10px;
+}
+
+.chat-input{
+flex:1;
+height:58px;
+background:#0b0b0b;
+border:1px solid #1d1d1d;
+border-radius:18px;
+color:#fff;
+padding:0 18px;
+font-size:16px;
+}
+
+.send-btn{
+width:58px;
+height:58px;
+border-radius:18px;
+border:none;
+background:#ff1e1e;
+color:#fff;
+}
+
+.top-podium{
+display:flex;
+align-items:flex-end;
+justify-content:center;
+gap:12px;
+margin-top:24px;
+margin-bottom:24px;
+}
+
+.podium-card{
+background:#0b0b0b;
+border:1px solid #202020;
+border-radius:24px;
+padding:16px;
+text-align:center;
+width:110px;
+}
+
+.podium-big{
+height:220px;
+border:1px solid #ff1e1e;
+box-shadow:0 0 30px rgba(255,0,0,.18);
+}
+
+.podium-small{
+height:180px;
+}
+
+.rank-circle{
+width:72px;
+height:72px;
+border-radius:50%;
+background:#1f1f1f;
+margin:0 auto 12px;
+border:3px solid #fff;
+}
+
+.rank-big{
+width:92px;
+height:92px;
+border-color:#ffd54a;
+}
+
+.rank-number{
+width:36px;
+height:36px;
+background:#fff;
+color:#000;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:900;
+margin:0 auto 12px;
+}
+
+.leader-list{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.leader-item{
+background:#0a0a0a;
+border:1px solid #161616;
+border-radius:18px;
+padding:14px 16px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.profile-card{
+background:linear-gradient(180deg,#1a0000,#090909);
+border:1px solid #ff1e1e;
+border-radius:28px;
+padding:20px;
+margin-bottom:18px;
+}
+
+.profile-top{
+display:flex;
+gap:14px;
+align-items:center;
+margin-bottom:18px;
+}
+
+.profile-avatar{
+width:82px;
+height:82px;
+border-radius:50%;
+background:#222;
+}
+
+.profile-name{
+font-size:38px;
+font-weight:800;
+}
+
+.progress{
+width:100%;
+height:16px;
+background:#141414;
+border-radius:999px;
+overflow:hidden;
+margin-top:14px;
+}
+
+.progress-fill{
+width:62%;
+height:100%;
+background:#ff1e1e;
+border-radius:999px;
+}
+
+.profile-balance-row{
+display:flex;
+gap:12px;
+margin-top:18px;
+}
+
+.profile-mini{
+flex:1;
+background:#0b0b0b;
+border:1px solid #1d1d1d;
+border-radius:18px;
+padding:16px;
+}
+
+.profile-actions{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin-bottom:18px;
+}
+
+.action-box{
+background:#0b0b0b;
+border:1px solid #171717;
+border-radius:20px;
+padding:18px 10px;
+text-align:center;
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+}
+
+.stat-box{
+background:#0a0a0a;
+border:1px solid #171717;
+border-radius:18px;
+padding:14px;
+text-align:center;
+}
+
+.stat-box h3{
+font-size:13px;
+opacity:.65;
+font-weight:500;
+margin-bottom:10px;
+}
+
+.stat-box p{
+font-size:24px;
+font-weight:800;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:430px;
+height:92px;
+background:rgba(10,10,10,.97);
+border-top:1px solid #191919;
+display:flex;
+justify-content:space-around;
+align-items:center;
+z-index:100;
+backdrop-filter:blur(12px);
+}
+
+.nav-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:6px;
+font-size:14px;
+color:#888;
+font-weight:600;
+}
+
+.nav-item.active{
+color:#ff1e1e;
+}
+
+@media(max-width:420px){
+.wheel{
+width:320px;
+height:320px;
+}
+.bank-amount{
+font-size:54px;
+}
+.profile-name{
+font-size:30px;
+}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="page active" id="gamePage">
+<div class="topbar">
+<div class="logo">WISE<span>PVP</span></div>
+<div class="balance-actions">
+<div class="balance-box">125.50 USDT</div>
+<div class="circle-btn"><i data-lucide="plus"></i></div>
+<div class="circle-btn notify-btn" style="background:#0d0d0d"><span class="notify-dot"></span><i data-lucide="bell"></i></div>
+</div>
+</div>
+
+<div class="online-history">
+<div class="online-box"><span class="online-dot"></span>236 онлайн</div>
+<div class="history-box">История игр</div>
+</div>
+
+<div class="bank-box">
+<div class="bank-title">БАНК</div>
+<div class="bank-amount">235.36 USDT</div>
+</div>
+
+<div class="timer-wrap">
+<div class="timer-pill">00:08</div>
+</div>
+
+<div class="wheel-wrap">
+<div class="pointer"></div>
+<div class="wheel">
+<div class="wheel-center">00:08</div>
+</div>
+</div>
+
+<div class="bet-controls">
+<input class="bet-input" placeholder="Введите сумму" />
+<button class="bet-btn">MAX</button>
+</div>
+
+<button class="place-bet">СДЕЛАТЬ СТАВКУ</button>
+<div class="minbet">Минимальная ставка: 1 USDT • Комиссия: 5%</div>
+
+<div class="hash-box">
+<div class="hash-title">HASH</div>
+<div class="hash-value">229962f82885958254936199e0fb58310779a6e2564594a84b44b31c47</div>
+</div>
+</div>
+
+<div class="page" id="chatPage">
+<div class="topbar">
+<div style="font-size:34px;font-weight:800">ЧАТ</div>
+<div class="circle-btn notify-btn" style="background:#0d0d0d"><i data-lucide="users"></i></div>
+</div>
+
+<div class="chat-list">
+<div class="chat-item">
+<div class="avatar"></div>
+<div class="chat-content">
+<div class="chat-name">CryptoKing <span class="vip-tag">VIP 3</span></div>
+<div class="chat-msg">Сегодня будет большой банк 🔥</div>
+</div>
+</div>
+
+<div class="chat-item">
+<div class="avatar"></div>
+<div class="chat-content">
+<div class="chat-name">MoonLight <span class="vip-tag">VIP 2</span></div>
+<div class="chat-msg">Кто сегодня тащит? 😎</div>
+</div>
+</div>
+
+<div class="chat-item system-msg">
+<div class="avatar"></div>
+<div class="chat-content">
+<div class="chat-name">СИСТЕМА</div>
+<div class="chat-msg">Игра #49394 завершена! Победитель: CryptoKing • Выигрыш: 542.36 USDT</div>
+</div>
+</div>
+
+<div class="chat-item">
+<div class="avatar"></div>
+<div class="chat-content">
+<div class="chat-name">TradeX <span class="vip-tag">VIP 4</span></div>
+<div class="chat-msg">Кто на 100+?</div>
+</div>
+</div>
+</div>
+
+<div class="chat-input-wrap">
+<div class="chat-input-box">
+<input class="chat-input" placeholder="Напишите сообщение..." />
+<button class="send-btn"><i data-lucide="send"></i></button>
+</div>
+</div>
+</div>
+
+<div class="page" id="topPage">
+<div class="topbar">
+<div style="font-size:34px;font-weight:800">ТОП</div>
+</div>
+
+<div class="top-tabs">
+<button class="tab tab-active">Игроки</button>
+<button class="tab">Выигрыши</button>
+<button class="tab">Ставки</button>
+</div>
+
+<div class="top-tabs">
+<button class="tab tab-active">День</button>
+<button class="tab">Неделя</button>
+<button class="tab">Месяц</button>
+<button class="tab">Все время</button>
+</div>
+
+<div class="top-podium">
+<div class="podium-card podium-small">
+<div class="rank-circle"></div>
+<div class="rank-number">2</div>
+<div style="font-weight:700">Wiser</div>
+<div style="opacity:.7;margin-top:6px">328.10 USDT</div>
+</div>
+
+<div class="podium-card podium-big">
+<div class="rank-circle rank-big"></div>
+<div class="rank-number" style="background:#ffd54a">1</div>
+<div style="font-weight:800;font-size:22px">CryptoKing</div>
+<div style="opacity:.7;margin-top:8px">542.36 USDT</div>
+</div>
+
+<div class="podium-card podium-small">
+<div class="rank-circle"></div>
+<div class="rank-number">3</div>
+<div style="font-weight:700">MoonLight</div>
+<div style="opacity:.7;margin-top:6px">215.67 USDT</div>
+</div>
+</div>
+
+<div class="leader-list">
+<div class="leader-item"><span>#4 TradeX</span><span>142.69 USDT</span></div>
+<div class="leader-item"><span>#5 Nikolas</span><span>98.32 USDT</span></div>
+<div class="leader-item"><span>#6 Alex007</span><span>76.20 USDT</span></div>
+<div class="leader-item"><span>#7 RichPlayer</span><span>65.10 USDT</span></div>
+<div class="leader-item"><span>#8 BlackBull</span><span>55.88 USDT</span></div>
+</div>
+</div>
+
+<div class="page" id="profilePage">
+<div class="topbar">
+<div style="font-size:34px;font-weight:800">ПРОФИЛЬ</div>
+</div>
+
+<div class="profile-card">
+<div class="profile-top">
+<div class="profile-avatar"></div>
+<div>
+<div class="profile-name">Wiser</div>
+<div style="opacity:.7;margin-top:6px">ID: 1029384756</div>
+</div>
+</div>
+
+<div style="display:flex;align-items:center;gap:14px">
+<div style="background:#ff1e1e;padding:12px 18px;border-radius:14px;font-weight:800">VIP 2</div>
+<div style="flex:1">
+<div style="text-align:right;margin-bottom:8px;opacity:.7">6250 / 10000 XP</div>
+<div class="progress"><div class="progress-fill"></div></div>
+</div>
+</div>
+
+<div class="profile-balance-row">
+<div class="profile-mini">
+<div style="opacity:.7;margin-bottom:8px">Баланс</div>
+<div style="font-size:28px;font-weight:800">125.50 USDT</div>
+</div>
+
+<div class="profile-mini">
+<div style="opacity:.7;margin-bottom:8px">Реферальный код</div>
+<div style="font-size:28px;font-weight:800">wise2024</div>
+</div>
+</div>
+</div>
+
+<div class="profile-actions">
+<div class="action-box"><i data-lucide="plus"></i><div style="margin-top:10px">Пополнение</div></div>
+<div class="action-box"><i data-lucide="arrow-up"></i><div style="margin-top:10px">Вывод</div></div>
+<div class="action-box"><i data-lucide="bell"></i><div style="margin-top:10px">Уведомления</div></div>
+</div>
+
+<div class="stats-grid">
+<div class="stat-box"><h3>Всего игр</h3><p>124</p></div>
+<div class="stat-box"><h3>Побед</h3><p>37</p></div>
+<div class="stat-box"><h3>Процент побед</h3><p>29%</p></div>
+<div class="stat-box"><h3>Выиграно</h3><p>4326</p></div>
+<div class="stat-box"><h3>Поставлено</h3><p>11106</p></div>
+<div class="stat-box"><h3>Серия побед</h3><p>5</p></div>
+</div>
+</div>
+
+<div class="bottom-nav">
+<div class="nav-item active" onclick="showPage('gamePage',this)">
+<i data-lucide="pie-chart"></i>
+<span>Игра</span>
+</div>
+<div class="nav-item" onclick="showPage('chatPage',this)">
+<i data-lucide="message-circle"></i>
+<span>Чат</span>
+</div>
+<div class="nav-item" onclick="showPage('topPage',this)">
+<i data-lucide="trophy"></i>
+<span>Топ</span>
+</div>
+<div class="nav-item" onclick="showPage('profilePage',this)">
+<i data-lucide="user"></i>
+<span>Профиль</span>
+</div>
+</div>
+
+</div>
+
+<script>
+lucide.createIcons();
+
+function showPage(id,el){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+el.classList.add('active');
+}
+</script>
+</body>
+</html>
