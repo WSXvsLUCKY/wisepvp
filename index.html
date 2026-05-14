@@ -222,7 +222,7 @@ opacity:1;
 .wheel-wrap{
 position:relative;
 width:100%;
-height:240px;
+height:260px;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -245,8 +245,8 @@ z-index:10;
 }
 
 .wheel{
-width:220px;
-height:220px;
+width:246px;
+height:246px;
 border-radius:50%;
 background:conic-gradient(
 #ffffff 0deg 210deg,
@@ -255,7 +255,7 @@ background:conic-gradient(
 #c40000 290deg 330deg,
 #3a3a3a 330deg 360deg
 );
-border:6px solid #ff1e1e;
+/* Убрана красная обводка */
 box-shadow:0 0 30px rgba(255,0,0,.2);
 animation:spin 8s linear infinite;
 }
@@ -509,7 +509,7 @@ justify-content:center;
 display:flex;
 align-items:flex-end;
 justify-content:center;
-gap:10px;
+gap:6px;
 margin-top:16px;
 margin-bottom:24px;
 }
@@ -520,7 +520,7 @@ border:1px solid #202020;
 border-radius:20px;
 padding:12px 6px;
 text-align:center;
-width:95px;
+width:105px;
 }
 
 .podium-big{
@@ -740,17 +740,6 @@ opacity:0.3;
 margin-left:auto;
 }
 
-.menu-item.logout {
-color:#ff1e1e;
-border-color:#3a0000;
-background:#120000;
-}
-
-.menu-item.logout i {
-opacity:1;
-color:#ff1e1e;
-}
-
 /* BOTTOM NAV */
 .bottom-nav{
 position:fixed;
@@ -789,8 +778,8 @@ color:#ff1e1e;
 }
 
 @media(max-width:420px){
-.wheel{ width:200px; height:200px; }
-.wheel-wrap{ height:220px; }
+.wheel{ width:230px; height:230px; }
+.wheel-wrap{ height:250px; }
 .bank-amount{ font-size:28px; }
 }
 </style>
@@ -822,7 +811,7 @@ color:#ff1e1e;
 <div class="bank-box">
 <div>
 <div class="bank-title">БАНК</div>
-<div class="bank-amount">235,36 USDT</div>
+<div class="bank-amount">235,36 <span style="color:#fff;">USDT</span></div>
 </div>
 <div class="bank-icon"><i data-lucide="coins" style="width:36px;height:36px;color:#fff;"></i></div>
 </div>
@@ -936,7 +925,7 @@ color:#ff1e1e;
 <div class="rank-circle"></div>
 <div class="rank-number">2</div>
 <div style="font-weight:700;font-size:12px;">Wiser</div>
-<div style="opacity:.7;margin-top:6px;font-size:10px;">328,10 USDT</div>
+<div style="opacity:.7;margin-top:6px;font-size:9px;white-space:nowrap;">328,10 USDT</div>
 </div>
 
 <div class="podium-card podium-big">
@@ -944,14 +933,14 @@ color:#ff1e1e;
 <div class="rank-circle rank-big"></div>
 <div class="rank-number" style="background:#ffd54a">1</div>
 <div style="font-weight:800;font-size:14px;">CryptoKing</div>
-<div style="opacity:.7;margin-top:6px;font-size:10px;">542,36 USDT</div>
+<div style="opacity:.7;margin-top:6px;font-size:9px;white-space:nowrap;">542,36 USDT</div>
 </div>
 
 <div class="podium-card podium-small">
 <div class="rank-circle"></div>
 <div class="rank-number">3</div>
 <div style="font-weight:700;font-size:12px;">MoonLight</div>
-<div style="opacity:.7;margin-top:6px;font-size:10px;">215,67 USDT</div>
+<div style="opacity:.7;margin-top:6px;font-size:9px;white-space:nowrap;">215,67 USDT</div>
 </div>
 </div>
 
@@ -967,7 +956,6 @@ color:#ff1e1e;
 <div class="page" id="profilePage">
 <div class="topbar">
 <div class="topbar-center">ПРОФИЛЬ</div>
-<button class="notify-btn" style="margin-left:auto;"><i data-lucide="settings" style="width:22px;height:22px;"></i></button>
 </div>
 
 <div class="profile-card">
@@ -990,14 +978,14 @@ color:#ff1e1e;
 
 <div class="profile-balance-row">
 <div class="profile-mini">
-<div style="opacity:.5;margin-bottom:6px;">БАЛАНС</div>
+<div style="opacity:.5;margin-bottom:6px;font-size:11px;">Баланс</div>
 <div style="font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:space-between;">
-125,50 USDT <i data-lucide="plus-circle" style="width:16px;height:16px;color:#ff1e1e;"></i>
+125,50 USDT 
 </div>
 </div>
 
 <div class="profile-mini">
-<div style="opacity:.5;margin-bottom:6px;">РЕФЕРАЛЬНЫЙ КОД</div>
+<div style="opacity:.5;margin-bottom:6px;font-size:11px;">Реферальный код</div>
 <div style="font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:space-between;">
 wise2024 <i data-lucide="copy" style="width:16px;height:16px;opacity:0.7;"></i>
 </div>
@@ -1026,19 +1014,10 @@ wise2024 <i data-lucide="copy" style="width:16px;height:16px;opacity:0.7;"></i>
 
 <div class="profile-menu">
 <div class="menu-item">
-<i data-lucide="file-text" class="icon-left"></i> История игр <i data-lucide="chevron-right" class="icon-right"></i>
-</div>
-<div class="menu-item">
 <i data-lucide="shield-check" class="icon-left"></i> Проверка честности <i data-lucide="chevron-right" class="icon-right"></i>
 </div>
 <div class="menu-item">
-<i data-lucide="users" class="icon-left"></i> Реферальная программа <i data-lucide="chevron-right" class="icon-right"></i>
-</div>
-<div class="menu-item">
 <i data-lucide="headphones" class="icon-left"></i> Поддержка <i data-lucide="chevron-right" class="icon-right"></i>
-</div>
-<div class="menu-item logout">
-<i data-lucide="log-out" class="icon-left"></i> Выйти из аккаунта
 </div>
 </div>
 </div>
