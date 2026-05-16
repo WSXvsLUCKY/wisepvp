@@ -121,6 +121,7 @@ background:#ff1e1e;
 display:flex;
 align-items:center;
 justify-content:center;
+cursor:pointer;
 }
 
 .notify-btn{
@@ -128,6 +129,7 @@ position:relative;
 background:transparent;
 border:none;
 color:#fff;
+cursor:pointer;
 }
 
 .notify-dot{
@@ -155,6 +157,7 @@ display:flex;
 align-items:center;
 gap:6px;
 opacity:0.8;
+cursor:pointer;
 }
 
 .online-dot{
@@ -255,10 +258,28 @@ background:conic-gradient(
 #c40000 290deg 330deg,
 #3a3a3a 330deg 360deg
 );
-/* Убрана красная обводка */
 box-shadow:0 0 30px rgba(255,0,0,.2);
 animation:spin 8s linear infinite;
+position: relative;
 }
+
+/* Аватарки внутри барабана - выровнены по секторам */
+.wheel-avatar {
+position: absolute;
+width: 28px;
+height: 28px;
+border-radius: 50%;
+border: 2px solid #fff;
+background: #222;
+background-size: cover;
+background-position: center;
+}
+/* Белый сектор (самый большой справа/снизу) */
+.wa-1 { top: 65%; left: 80%; transform: translate(-50%, -50%); background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Felix');}
+/* Темно-красный сектор (слева внизу) */
+.wa-2 { top: 82%; left: 32%; transform: translate(-50%, -50%); background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Jack'); border-color: #ff1e1e;}
+/* Светло-красный сектор (слева посередине) */
+.wa-3 { top: 48%; left: 18%; transform: translate(-50%, -50%); background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Mia');}
 
 .wheel-center{
 position:absolute;
@@ -295,6 +316,7 @@ border-radius:12px;
 font-size:12px;
 font-weight:700;
 text-align:center;
+cursor:pointer;
 }
 
 .quick-btn.active {
@@ -331,6 +353,7 @@ font-size:16px;
 font-weight:900;
 color:#fff;
 margin-bottom:10px;
+cursor:pointer;
 }
 
 .minbet{
@@ -345,6 +368,7 @@ margin-bottom:20px;
 background:transparent;
 border:none;
 padding:0;
+margin-bottom: 24px;
 }
 
 .hash-title{
@@ -365,6 +389,76 @@ border-radius:12px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+}
+
+/* CURRENT BETS LIST */
+.current-bets {
+display: flex;
+flex-direction: column;
+gap: 10px;
+margin-bottom: 20px;
+}
+
+.bets-header {
+font-size: 13px;
+font-weight: 800;
+color: #fff;
+opacity: 0.9;
+margin-bottom: 6px;
+display: flex;
+justify-content: space-between;
+}
+
+.bet-item {
+background: #0a0a0a;
+border: 1px solid #1a1a1a;
+border-radius: 14px;
+padding: 12px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+position: relative;
+overflow: hidden;
+}
+
+.bet-item-bg {
+position: absolute;
+left: 0; top: 0; bottom: 0;
+background: rgba(255, 30, 30, 0.1);
+z-index: 0;
+}
+
+.bet-user {
+display: flex;
+align-items: center;
+gap: 10px;
+font-weight: 600;
+font-size: 14px;
+z-index: 1;
+}
+
+.bet-user-avatar {
+width: 32px; height: 32px;
+border-radius: 50%;
+background: #222;
+border: 2px solid;
+background-size: cover;
+}
+
+.bet-info {
+text-align: right;
+z-index: 1;
+}
+
+.bet-info-amount {
+font-weight: 800;
+font-size: 14px;
+}
+
+.bet-info-percent {
+font-size: 11px;
+opacity: 0.6;
+margin-top: 2px;
 }
 
 /* CHAT PAGE */
@@ -391,6 +485,7 @@ background:transparent;
 color:#999;
 font-size:14px;
 font-weight:700;
+cursor:pointer;
 }
 
 .chat-list{
@@ -414,6 +509,8 @@ height:44px;
 border-radius:50%;
 background:#222;
 flex-shrink:0;
+background-size: cover;
+background-position: center;
 }
 
 .chat-content{
@@ -502,6 +599,7 @@ color:#fff;
 display:flex;
 align-items:center;
 justify-content:center;
+cursor:pointer;
 }
 
 /* TOP PAGE */
@@ -521,16 +619,16 @@ border-radius:20px;
 padding:12px 6px;
 text-align:center;
 width:105px;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+min-height: 130px;
 }
 
 .podium-big{
-height:170px;
+min-height:170px;
 border:1px solid #ff1e1e;
 box-shadow:0 0 25px rgba(255,0,0,.15);
-}
-
-.podium-small{
-height:130px;
 }
 
 .rank-circle{
@@ -540,6 +638,8 @@ border-radius:50%;
 background:#1f1f1f;
 margin:0 auto 10px;
 border:2px solid #fff;
+background-size: cover;
+background-position: center;
 }
 
 .rank-big{
@@ -600,6 +700,8 @@ width:60px;
 height:60px;
 border-radius:50%;
 background:#222;
+background-size: cover;
+background-position: center;
 }
 
 .profile-name{
@@ -653,6 +755,7 @@ border:1px solid #1a1a1a;
 border-radius:16px;
 padding:12px 0;
 text-align:center;
+cursor:pointer;
 }
 
 .action-box i{
@@ -725,6 +828,9 @@ align-items:center;
 gap:12px;
 font-size:13px;
 font-weight:600;
+cursor:pointer;
+text-decoration:none;
+color:#fff;
 }
 
 .menu-item i.icon-left {
@@ -766,6 +872,7 @@ gap:6px;
 font-size:12px;
 color:#666;
 font-weight:600;
+cursor:pointer;
 }
 
 .nav-item i{
@@ -775,6 +882,163 @@ height:22px;
 
 .nav-item.active{
 color:#ff1e1e;
+}
+
+/* MODALS */
+.modal-overlay {
+position: fixed;
+top: 0; left: 50%; transform: translateX(-50%);
+width: 100%; max-width: 430px; height: 100vh;
+background: rgba(0,0,0,0.8);
+z-index: 1000;
+display: none;
+flex-direction: column;
+justify-content: flex-end;
+backdrop-filter: blur(4px);
+}
+
+.modal-overlay.active {
+display: flex;
+}
+
+.modal-content {
+background: #0b0b0b;
+border-top: 1px solid #222;
+border-radius: 24px 24px 0 0;
+width: 100%;
+max-height: 85vh;
+padding: 24px 20px 40px;
+display: flex;
+flex-direction: column;
+position: relative;
+animation: slideUp 0.3s ease forwards;
+}
+
+@keyframes slideUp {
+from { transform: translateY(100%); }
+to { transform: translateY(0); }
+}
+
+.modal-close {
+position: absolute;
+top: 20px; right: 20px;
+background: transparent;
+border: none;
+color: #888;
+cursor: pointer;
+}
+
+.modal-title {
+font-size: 18px;
+font-weight: 800;
+text-transform: uppercase;
+margin-bottom: 20px;
+text-align: center;
+}
+
+.method-list {
+display: flex;
+flex-direction: column;
+gap: 10px;
+margin-bottom: 20px;
+}
+
+.method-btn {
+background: #111;
+border: 1px solid #222;
+border-radius: 14px;
+padding: 14px;
+display: flex;
+align-items: center;
+gap: 12px;
+color: #fff;
+font-size: 14px;
+font-weight: 600;
+cursor: pointer;
+text-align: left;
+}
+
+.method-btn.active {
+border-color: #ff1e1e;
+background: rgba(255,30,30,0.05);
+}
+
+.method-icon {
+width: 32px; height: 32px;
+border-radius: 8px;
+display: flex; align-items: center; justify-content: center;
+font-size: 16px;
+}
+
+.form-group {
+margin-bottom: 16px;
+}
+
+.form-label {
+font-size: 12px; opacity: 0.6; margin-bottom: 8px; display: block;
+}
+
+.form-input {
+width: 100%;
+height: 50px;
+background: #0d0d0d;
+border: 1px solid #222;
+border-radius: 14px;
+color: #fff;
+padding: 0 16px;
+font-size: 15px;
+font-weight: 600;
+outline: none;
+}
+
+.btn-primary {
+width: 100%;
+height: 50px;
+background: #ff1e1e;
+color: #fff;
+border: none;
+border-radius: 14px;
+font-size: 16px;
+font-weight: 800;
+cursor: pointer;
+margin-top: 10px;
+}
+
+.history-list {
+display: flex;
+flex-direction: column;
+gap: 10px;
+overflow-y: auto;
+max-height: 50vh;
+}
+
+.hist-card {
+background: #111; border: 1px solid #1a1a1a; border-radius: 14px;
+padding: 14px;
+cursor: pointer;
+}
+
+.hist-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.hist-id { font-weight: 700; font-size: 14px; }
+.hist-status { font-size: 12px; font-weight: 700; }
+.hist-win { color: #4ade80; }
+.hist-lose { color: #f87171; }
+
+.hist-winner {
+display: flex; align-items: center; gap: 8px; font-size: 12px; opacity: 0.8;
+}
+
+.hist-winner img { width: 20px; height: 20px; border-radius: 50%; }
+
+.game-details-hidden {
+display: none;
+margin-top: 12px; padding-top: 12px; border-top: 1px dashed #333;
+font-size: 11px; opacity: 0.6; word-break: break-all;
+}
+
+.fairness-result {
+display: none;
+margin-top: 20px; background: #0a0a0a; border: 1px solid #1a1a1a; padding: 16px; border-radius: 14px;
 }
 
 @media(max-width:420px){
@@ -793,10 +1057,10 @@ color:#ff1e1e;
 <div class="balance-actions">
 <div class="balance-box">
 <div class="usdt-icon">₮</div>
-125,50 USDT
-<div class="circle-btn-small"><i data-lucide="plus" style="width:14px;height:14px;"></i></div>
+<span id="header-user-balance" data-value="125.50">125,50</span> USDT
+<div class="circle-btn-small" onclick="openModal('depositModal')"><i data-lucide="plus" style="width:14px;height:14px;"></i></div>
 </div>
-<button class="notify-btn">
+<button class="notify-btn" onclick="openModal('notificationsModal')">
 <span class="notify-dot"></span>
 <i data-lucide="bell" style="width:20px;height:20px;"></i>
 </button>
@@ -804,25 +1068,29 @@ color:#ff1e1e;
 </div>
 
 <div class="online-history">
-<div><span class="online-dot"></span>236 онлайн</div>
-<div><i data-lucide="history" style="width:14px;height:14px;"></i> История игр</div>
+<div><span class="online-dot"></span><span id="current-online" data-value="236">236</span> онлайн</div>
+<div onclick="openModal('gameHistoryModal')"><i data-lucide="history" style="width:14px;height:14px;"></i> История игр</div>
 </div>
 
 <div class="bank-box">
 <div>
 <div class="bank-title">БАНК</div>
-<div class="bank-amount">235,36 <span style="color:#fff;">USDT</span></div>
+<div class="bank-amount"><span id="current-game-bank" data-value="235.36">235,36</span> <span style="color:#fff;">USDT</span></div>
 </div>
 <div class="bank-icon"><i data-lucide="coins" style="width:36px;height:36px;color:#fff;"></i></div>
 </div>
 
 <div class="timer-wrap">
-ДО НАЧАЛА <div class="timer-pill">00:08</div>
+ДО НАЧАЛА <div class="timer-pill" id="game-timer">00:08</div>
 </div>
 
 <div class="wheel-wrap">
 <div class="pointer"></div>
-<div class="wheel"></div>
+<div class="wheel">
+    <div class="wheel-avatar wa-1" data-user-id="101" style="background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Felix');"></div>
+    <div class="wheel-avatar wa-2" data-user-id="102" style="background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Jack');"></div>
+    <div class="wheel-avatar wa-3" data-user-id="103" style="background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Mia');"></div>
+</div>
 <div class="wheel-center">00:08</div>
 </div>
 
@@ -835,70 +1103,90 @@ color:#ff1e1e;
 </div>
 
 <div class="bet-controls">
-<input class="bet-input" placeholder="Введите сумму" />
+<input class="bet-input" id="bet-input-amount" placeholder="Введите сумму" />
 </div>
 
-<button class="place-bet">СДЕЛАТЬ СТАВКУ</button>
+<button class="place-bet" id="btn-place-bet">СДЕЛАТЬ СТАВКУ</button>
 <div class="minbet">Минимальная ставка: 1 USDT • Комиссия: 5%</div>
 
 <div class="hash-box">
 <div class="hash-title">HASH</div>
 <div class="hash-value">
-<span>229962f82885958254936199e0fb5831...</span>
-<i data-lucide="copy" style="width:14px;height:14px;color:#aaa;"></i>
+<span id="current-game-hash">229962f82885958254936199e0fb5831...</span>
+<i data-lucide="copy" style="width:14px;height:14px;color:#aaa;cursor:pointer;"></i>
 </div>
 </div>
+
+<div class="current-bets" id="current-bets-list">
+    <div class="bets-header">ИГРОКИ В ТЕКУЩЕЙ ИГРЕ (<span id="current-players-count">3</span>)</div>
+    
+    <div class="bet-item" data-user-id="101">
+        <div class="bet-item-bg" style="width: 55%; background: rgba(255, 255, 255, 0.1);"></div>
+        <div class="bet-user">
+            <div class="bet-user-avatar" style="background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Felix'); border-color: #fff;"></div>
+            CryptoKing
+        </div>
+        <div class="bet-info">
+            <div class="bet-info-amount">129.44 USDT</div>
+            <div class="bet-info-percent">55%</div>
+        </div>
+    </div>
+
+    <div class="bet-item" data-user-id="102">
+        <div class="bet-item-bg" style="width: 30%; background: rgba(255, 30, 30, 0.15);"></div>
+        <div class="bet-user">
+            <div class="bet-user-avatar" style="background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Jack'); border-color: #ff1e1e;"></div>
+            Wiser
+        </div>
+        <div class="bet-info">
+            <div class="bet-info-amount">70.50 USDT</div>
+            <div class="bet-info-percent" style="color:#ff1e1e">30%</div>
+        </div>
+    </div>
+
+    <div class="bet-item" data-user-id="103">
+        <div class="bet-item-bg" style="width: 15%; background: rgba(122, 0, 0, 0.2);"></div>
+        <div class="bet-user">
+            <div class="bet-user-avatar" style="background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Mia'); border-color: #7a0000;"></div>
+            MoonLight
+        </div>
+        <div class="bet-info">
+            <div class="bet-info-amount">35.42 USDT</div>
+            <div class="bet-info-percent" style="color:#ff6b6b">15%</div>
+        </div>
+    </div>
+</div>
+
 </div>
 
 <div class="page" id="chatPage">
 <div class="topbar">
 <div class="topbar-center">ЧАТ</div>
-<button class="notify-btn" style="margin-left:auto;"><i data-lucide="users" style="width:22px;height:22px;"></i></button>
+<button class="notify-btn" style="margin-left:auto;" onclick="openModal('notificationsModal')"><i data-lucide="bell" style="width:22px;height:22px;"></i></button>
 </div>
 
-<div class="top-tabs">
-<button class="tab tab-active">Общий</button>
-<button class="tab">Игра</button>
-</div>
+<div class="chat-list" id="chat-messages-container">
+    <div class="chat-item" data-message-id="msg-1" data-user-id="101">
+        <div class="avatar" style="background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Felix');"></div>
+        <div class="chat-content">
+            <div class="chat-name">CryptoKing <span class="vip-tag">VIP 3</span> <span style="margin-left:auto;font-size:10px;opacity:0.5;font-weight:400;">14:32</span></div>
+            <div class="chat-msg">Сегодня будет большой банк 🔥</div>
+        </div>
+    </div>
 
-<div class="chat-list">
-<div class="chat-item">
-<div class="avatar"></div>
-<div class="chat-content">
-<div class="chat-name">CryptoKing <span class="vip-tag">VIP 3</span> <span style="margin-left:auto;font-size:10px;opacity:0.5;font-weight:400;">14:32</span></div>
-<div class="chat-msg">Сегодня будет большой банк 🔥</div>
-</div>
-</div>
-
-<div class="chat-item">
-<div class="avatar"></div>
-<div class="chat-content">
-<div class="chat-name">MoonLight <span class="vip-tag">VIP 2</span> <span style="margin-left:auto;font-size:10px;opacity:0.5;font-weight:400;">14:32</span></div>
-<div class="chat-msg">Кто сегодня тащит? 😎</div>
-</div>
-</div>
-
-<div class="chat-item system-msg">
-<div class="avatar"><i data-lucide="trophy" style="width:20px;height:20px;"></i></div>
-<div class="chat-content">
-<div class="chat-name">СИСТЕМА <span style="margin-left:auto;font-size:10px;opacity:0.5;font-weight:400;color:#fff;">14:34</span></div>
-<div class="chat-msg">Игра #49394 завершена!<br>Победитель: CryptoKing<br>Выигрыш: 542,36 USDT</div>
-</div>
-</div>
-
-<div class="chat-item">
-<div class="avatar"></div>
-<div class="chat-content">
-<div class="chat-name">TradeX <span class="vip-tag">VIP 4</span> <span style="margin-left:auto;font-size:10px;opacity:0.5;font-weight:400;">14:35</span></div>
-<div class="chat-msg">Кто на 100+?</div>
-</div>
-</div>
+    <div class="chat-item system-msg">
+        <div class="avatar"><i data-lucide="trophy" style="width:20px;height:20px;"></i></div>
+        <div class="chat-content">
+            <div class="chat-name">СИСТЕМА <span style="margin-left:auto;font-size:10px;opacity:0.5;font-weight:400;color:#fff;">14:34</span></div>
+            <div class="chat-msg">Игра #49394 завершена!<br>Победитель: CryptoKing<br>Выигрыш: 542,36 USDT</div>
+        </div>
+    </div>
 </div>
 
 <div class="chat-input-wrap">
 <div class="chat-input-box">
-<input class="chat-input" placeholder="Напишите сообщение..." />
-<button class="send-btn"><i data-lucide="send" style="width:20px;height:20px;"></i></button>
+<input class="chat-input" id="chat-input-field" placeholder="Напишите сообщение..." />
+<button class="send-btn" id="btn-send-message"><i data-lucide="send" style="width:20px;height:20px;"></i></button>
 </div>
 </div>
 </div>
@@ -920,36 +1208,34 @@ color:#ff1e1e;
 <button class="tab">Все время</button>
 </div>
 
-<div class="top-podium">
-<div class="podium-card podium-small">
-<div class="rank-circle"></div>
-<div class="rank-number">2</div>
-<div style="font-weight:700;font-size:12px;">Wiser</div>
-<div style="opacity:.7;margin-top:6px;font-size:9px;white-space:nowrap;">328,10 USDT</div>
+<div class="top-podium" id="top-podium-container">
+    <div class="podium-card" data-user-id="102">
+        <div class="rank-circle" style="background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Jack');"></div>
+        <div class="rank-number">2</div>
+        <div style="font-weight:700;font-size:12px;">Wiser</div>
+        <div style="opacity:.7;margin-top:6px;font-size:9px;word-break: break-all;">328,10 USDT</div>
+    </div>
+
+    <div class="podium-card podium-big" data-user-id="101">
+        <i data-lucide="crown" style="color:#ffd54a;width:24px;height:24px;margin:0 auto 4px;display:block;"></i>
+        <div class="rank-circle rank-big" style="background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Felix');"></div>
+        <div class="rank-number" style="background:#ffd54a">1</div>
+        <div style="font-weight:800;font-size:14px;">CryptoKing</div>
+        <div style="opacity:.7;margin-top:6px;font-size:9px;word-break: break-all;">542,36 USDT</div>
+    </div>
+
+    <div class="podium-card" data-user-id="103">
+        <div class="rank-circle" style="background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Mia');"></div>
+        <div class="rank-number">3</div>
+        <div style="font-weight:700;font-size:12px;">MoonLight</div>
+        <div style="opacity:.7;margin-top:6px;font-size:9px;word-break: break-all;">215,67 USDT</div>
+    </div>
 </div>
 
-<div class="podium-card podium-big">
-<i data-lucide="crown" style="color:#ffd54a;width:24px;height:24px;margin:0 auto 4px;display:block;"></i>
-<div class="rank-circle rank-big"></div>
-<div class="rank-number" style="background:#ffd54a">1</div>
-<div style="font-weight:800;font-size:14px;">CryptoKing</div>
-<div style="opacity:.7;margin-top:6px;font-size:9px;white-space:nowrap;">542,36 USDT</div>
-</div>
-
-<div class="podium-card podium-small">
-<div class="rank-circle"></div>
-<div class="rank-number">3</div>
-<div style="font-weight:700;font-size:12px;">MoonLight</div>
-<div style="opacity:.7;margin-top:6px;font-size:9px;white-space:nowrap;">215,67 USDT</div>
-</div>
-</div>
-
-<div class="leader-list">
-<div class="leader-item"><span>4 &nbsp;&nbsp; TradeX</span><span style="opacity:0.8;">142,69 USDT</span></div>
-<div class="leader-item"><span>5 &nbsp;&nbsp; Nikolas</span><span style="opacity:0.8;">98,32 USDT</span></div>
-<div class="leader-item"><span>6 &nbsp;&nbsp; Alex007</span><span style="opacity:0.8;">76,20 USDT</span></div>
-<div class="leader-item"><span>7 &nbsp;&nbsp; RichPlayer</span><span style="opacity:0.8;">65,10 USDT</span></div>
-<div class="leader-item"><span>8 &nbsp;&nbsp; BlackBull</span><span style="opacity:0.8;">55,88 USDT</span></div>
+<div class="leader-list" id="top-list-container">
+    <div class="leader-item" data-user-id="104"><span>4 &nbsp;&nbsp; TradeX</span><span style="opacity:0.8;">142,69 USDT</span></div>
+    <div class="leader-item" data-user-id="105"><span>5 &nbsp;&nbsp; Nikolas</span><span style="opacity:0.8;">98,32 USDT</span></div>
+    <div class="leader-item" data-user-id="106"><span>6 &nbsp;&nbsp; Alex007</span><span style="opacity:0.8;">76,20 USDT</span></div>
 </div>
 </div>
 
@@ -960,66 +1246,266 @@ color:#ff1e1e;
 
 <div class="profile-card">
 <div class="profile-top">
-<div class="profile-avatar"></div>
+<div class="profile-avatar" id="profile-avatar-img" style="background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Jack');"></div>
 <div>
-<div class="profile-name">Wiser <i data-lucide="check-circle-2" style="width:16px;height:16px;color:#ff1e1e;fill:#ff1e1e;color:#000;"></i></div>
-<div style="opacity:.6;margin-top:4px;font-size:12px;display:flex;align-items:center;gap:4px;">ID: 1029384756 <i data-lucide="copy" style="width:12px;height:12px;"></i></div>
+<div class="profile-name"><span id="profile-username">Wiser</span> <i data-lucide="check-circle-2" style="width:16px;height:16px;color:#ff1e1e;fill:#ff1e1e;color:#000;"></i></div>
+<div style="opacity:.6;margin-top:4px;font-size:12px;display:flex;align-items:center;gap:4px;">ID: <span id="profile-user-id">1029384756</span> <i data-lucide="copy" style="width:12px;height:12px;cursor:pointer;"></i></div>
 </div>
 </div>
 
 <div style="display:flex;align-items:center;gap:12px;margin-top:10px;">
-<div style="background:#ff1e1e;padding:6px 12px;border-radius:10px;font-weight:800;font-size:12px;">VIP 2</div>
+<div style="background:#ff1e1e;padding:6px 12px;border-radius:10px;font-weight:800;font-size:12px;" id="profile-vip-level">VIP 2</div>
 <div style="flex:1">
-<div style="text-align:right;margin-bottom:4px;opacity:.5;font-size:10px;">6250 / 10000 XP</div>
-<div class="progress"><div class="progress-fill"></div></div>
+<div style="text-align:right;margin-bottom:4px;opacity:.5;font-size:10px;" id="profile-xp-text">6250 / 10000 XP</div>
+<div class="progress"><div class="progress-fill" id="profile-xp-bar" style="width: 62.5%;"></div></div>
 </div>
 </div>
+
 </div>
 
 <div class="profile-balance-row">
 <div class="profile-mini">
 <div style="opacity:.5;margin-bottom:6px;font-size:11px;">Баланс</div>
 <div style="font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:space-between;">
-125,50 USDT 
+<span id="profile-balance-val">125,50 USDT</span>
 </div>
 </div>
 
 <div class="profile-mini">
 <div style="opacity:.5;margin-bottom:6px;font-size:11px;">Реферальный код</div>
 <div style="font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:space-between;">
-wise2024 <i data-lucide="copy" style="width:16px;height:16px;opacity:0.7;"></i>
+<span id="profile-ref-code">wise2024</span> <i data-lucide="copy" style="width:16px;height:16px;opacity:0.7;cursor:pointer;"></i>
 </div>
 </div>
 </div>
 
 <div class="profile-actions">
-<div class="action-box"><i data-lucide="plus"></i><div>Пополнение</div></div>
-<div class="action-box"><i data-lucide="arrow-up"></i><div>Вывод</div></div>
-<div class="action-box"><i data-lucide="history"></i><div>История</div></div>
-<div class="action-box" style="position:relative;">
-<span class="notify-dot" style="top:8px;right:16px;"></span>
+<div class="action-box" onclick="openModal('depositModal')"><i data-lucide="plus"></i><div>Пополнение</div></div>
+<div class="action-box" onclick="openModal('withdrawModal')"><i data-lucide="arrow-up"></i><div>Вывод</div></div>
+<div class="action-box" onclick="openModal('actionHistoryModal')"><i data-lucide="history"></i><div>История</div></div>
+<div class="action-box" style="position:relative;" onclick="openModal('notificationsModal')">
+<span class="notify-dot" id="profile-notify-dot" style="top:8px;right:16px;"></span>
 <i data-lucide="bell"></i><div>Уведомления</div>
 </div>
 </div>
 
 <div class="stats-header">Статистика <span>Все время</span></div>
-<div class="stats-grid">
-<div class="stat-box"><h3>Всего игр</h3><p>124</p></div>
-<div class="stat-box"><h3>Побед</h3><p>37</p></div>
-<div class="stat-box"><h3>Процент побед</h3><p>29.84%</p></div>
-<div class="stat-box"><h3>Общий банк</h3><p style="font-size:13px;line-height:1.2;">15 432,85<br><span style="font-size:9px;font-weight:400;opacity:0.5;">USDT</span></p></div>
-<div class="stat-box"><h3>Выиграно</h3><p style="font-size:13px;line-height:1.2;">4 326,10<br><span style="font-size:9px;font-weight:400;opacity:0.5;">USDT</span></p></div>
-<div class="stat-box"><h3>Поставлено</h3><p style="font-size:13px;line-height:1.2;">11 106,75<br><span style="font-size:9px;font-weight:400;opacity:0.5;">USDT</span></p></div>
+<div class="stats-grid" id="profile-stats-container">
+<div class="stat-box"><h3>Всего игр</h3><p data-stat="total_games">124</p></div>
+<div class="stat-box"><h3>Побед</h3><p data-stat="total_wins">37</p></div>
+<div class="stat-box"><h3>Процент побед</h3><p data-stat="win_rate">29.84%</p></div>
+<div class="stat-box"><h3>Общий банк</h3><p style="font-size:13px;line-height:1.2;"><span data-stat="total_bank">15 432,85</span><br><span style="font-size:9px;font-weight:400;opacity:0.5;">USDT</span></p></div>
+<div class="stat-box"><h3>Выиграно</h3><p style="font-size:13px;line-height:1.2;"><span data-stat="total_won">4 326,10</span><br><span style="font-size:9px;font-weight:400;opacity:0.5;">USDT</span></p></div>
+<div class="stat-box"><h3>Поставлено</h3><p style="font-size:13px;line-height:1.2;"><span data-stat="total_bet">11 106,75</span><br><span style="font-size:9px;font-weight:400;opacity:0.5;">USDT</span></p></div>
 </div>
 
 <div class="profile-menu">
-<div class="menu-item">
+<div class="menu-item" onclick="openModal('fairnessModal')">
 <i data-lucide="shield-check" class="icon-left"></i> Проверка честности <i data-lucide="chevron-right" class="icon-right"></i>
 </div>
-<div class="menu-item">
+<a href="https://t.me/your_telegram_account" target="_blank" class="menu-item">
 <i data-lucide="headphones" class="icon-left"></i> Поддержка <i data-lucide="chevron-right" class="icon-right"></i>
+</a>
 </div>
 </div>
+
+<div class="modal-overlay" id="depositModal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('depositModal')"><i data-lucide="x"></i></button>
+        <div class="modal-title">ПОПОЛНЕНИЕ</div>
+        
+        <div class="method-list" id="deposit-methods">
+            <div class="method-btn active" data-method="tonconnect">
+                <div class="method-icon" style="background:#0088cc;"><i data-lucide="wallet" style="color:#fff;"></i></div>
+                <div>
+                    <div style="font-size:14px;">TON Connect</div>
+                    <div style="font-size:11px; font-weight:400; opacity:0.6;">Через TON кошелек</div>
+                </div>
+            </div>
+            <div class="method-btn" data-method="cryptobot">
+                <div class="method-icon" style="background:#2AABEE;"><i data-lucide="bot" style="color:#fff;"></i></div>
+                <div>
+                    <div style="font-size:14px;">CryptoBot</div>
+                    <div style="font-size:11px; font-weight:400; opacity:0.6;">Telegram бот</div>
+                </div>
+            </div>
+            <div class="method-btn" data-method="xrocket">
+                <div class="method-icon" style="background:#ff1e1e;"><i data-lucide="rocket" style="color:#fff;"></i></div>
+                <div>
+                    <div style="font-size:14px;">xRocket</div>
+                    <div style="font-size:11px; font-weight:400; opacity:0.6;">Переводы xRocket</div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center; font-size:12px; opacity:0.5; margin-bottom:16px;">Комиссия сети: 3%</div>
+        
+        <div class="form-group">
+            <label class="form-label">Сумма пополнения (USDT)</label>
+            <input type="number" class="form-input" id="deposit-amount-input" placeholder="Введите сумму..." />
+        </div>
+        <button class="btn-primary" id="btn-submit-deposit" onclick="closeModal('depositModal')">ПОПОЛНИТЬ</button>
+    </div>
+</div>
+
+<div class="modal-overlay" id="withdrawModal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('withdrawModal')"><i data-lucide="x"></i></button>
+        <div class="modal-title">ВЫВОД СРЕДСТВ</div>
+        
+        <div class="method-list" id="withdraw-methods">
+            <div class="method-btn active" data-method="cryptobot">
+                <div class="method-icon" style="background:#2AABEE;"><i data-lucide="bot" style="color:#fff;"></i></div>
+                <div>
+                    <div style="font-size:14px;">CryptoBot</div>
+                </div>
+            </div>
+            <div class="method-btn" data-method="xrocket">
+                <div class="method-icon" style="background:#ff1e1e;"><i data-lucide="rocket" style="color:#fff;"></i></div>
+                <div>
+                    <div style="font-size:14px;">xRocket</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Сумма вывода (USDT)</label>
+            <input type="number" class="form-input" id="withdraw-amount-input" placeholder="Введите сумму..." />
+        </div>
+        <button class="btn-primary" id="btn-submit-withdraw" onclick="closeModal('withdrawModal')">ВЫВЕСТИ</button>
+    </div>
+</div>
+
+<div class="modal-overlay" id="gameHistoryModal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('gameHistoryModal')"><i data-lucide="x"></i></button>
+        <div class="modal-title">ИСТОРИЯ ИГР</div>
+        
+        <div class="top-tabs" id="history-filter-tabs">
+            <button class="tab tab-active" data-filter="all">Все</button>
+            <button class="tab" data-filter="my">Мои</button>
+        </div>
+
+        <div class="history-list" id="game-history-list">
+            <div class="hist-card" data-game-id="49395" onclick="toggleGameDetails(this)">
+                <div class="hist-row">
+                    <span class="hist-id">Игра #49395</span>
+                    <span class="hist-status hist-win">Победа</span>
+                </div>
+                <div class="hist-row">
+                    <span style="font-size:12px; opacity:0.6;">Банк: 542.36 USDT</span>
+                    <div class="hist-winner"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" /> CryptoKing</div>
+                </div>
+                <div class="game-details-hidden">
+                    <div style="margin-bottom:4px;"><strong style="color:#ff1e1e;">Hash:</strong> <span class="hist-game-hash">229962f82885958254936199...</span></div>
+                    <div><strong style="color:#ff1e1e;">Server Seed:</strong> <span class="hist-server-seed">8a1b2c3d4e5f6g7h8i9j...</span></div>
+                </div>
+            </div>
+
+            <div class="hist-card" data-game-id="49394" onclick="toggleGameDetails(this)">
+                <div class="hist-row">
+                    <span class="hist-id">Игра #49394</span>
+                    <span class="hist-status hist-lose">Проигрыш</span>
+                </div>
+                <div class="hist-row">
+                    <span style="font-size:12px; opacity:0.6;">Банк: 120.00 USDT</span>
+                    <div class="hist-winner"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mia" /> MoonLight</div>
+                </div>
+                <div class="game-details-hidden">
+                    <div style="margin-bottom:4px;"><strong style="color:#ff1e1e;">Hash:</strong> <span class="hist-game-hash">a1b2c3d4e5f6g7h8i9j0...</span></div>
+                    <div><strong style="color:#ff1e1e;">Server Seed:</strong> <span class="hist-server-seed">z9y8x7w6v5u4t3s2r1q...</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="actionHistoryModal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('actionHistoryModal')"><i data-lucide="x"></i></button>
+        <div class="modal-title">ИСТОРИЯ ДЕЙСТВИЙ</div>
+        
+        <div class="history-list" id="transaction-history-list">
+            <div class="hist-card" data-tx-id="tx-101">
+                <div class="hist-row">
+                    <span class="hist-id">Пополнение</span>
+                    <span class="hist-status hist-win">+ 50.00 USDT</span>
+                </div>
+                <div class="hist-row">
+                    <span style="font-size:12px; opacity:0.6;">23.03.2024 14:30</span>
+                    <span style="font-size:12px; opacity:0.8;">TON Connect</span>
+                </div>
+            </div>
+            <div class="hist-card" data-tx-id="tx-102">
+                <div class="hist-row">
+                    <span class="hist-id">Вывод</span>
+                    <span class="hist-status hist-lose">- 25.00 USDT</span>
+                </div>
+                <div class="hist-row">
+                    <span style="font-size:12px; opacity:0.6;">21.03.2024 09:15</span>
+                    <span style="font-size:12px; opacity:0.8;">CryptoBot</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="notificationsModal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('notificationsModal')"><i data-lucide="x"></i></button>
+        <div class="modal-title"><i data-lucide="bell" style="width:20px;height:20px;margin-right:8px;vertical-align:middle;color:#ff1e1e;"></i> УВЕДОМЛЕНИЯ</div>
+        
+        <div class="history-list" id="notifications-list">
+            <div class="hist-card" data-notif-id="n-1" style="border-left: 3px solid #4ade80;">
+                <div style="font-weight:700; font-size:14px; margin-bottom:4px;">Победа!</div>
+                <div style="font-size:12px; opacity:0.8;">Ваша ставка в игре #49395 выиграла 542.36 USDT.</div>
+                <div style="font-size:10px; opacity:0.5; margin-top:6px;">Только что</div>
+            </div>
+            <div class="hist-card" data-notif-id="n-2" style="border-left: 3px solid #ff1e1e;">
+                <div style="font-weight:700; font-size:14px; margin-bottom:4px;">Пополнение</div>
+                <div style="font-size:12px; opacity:0.8;">Пополнение на 50.00 USDT успешно подтверждено.</div>
+                <div style="font-size:10px; opacity:0.5; margin-top:6px;">2 часа назад</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="fairnessModal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('fairnessModal')"><i data-lucide="x"></i></button>
+        <div class="modal-title">ПРОВЕРКА ЧЕСТНОСТИ</div>
+        
+        <div style="font-size:12px; opacity:0.7; margin-bottom:16px; line-height:1.4;">
+            Введите Hash игры, чтобы проверить ее честность и получить доступ к Seeds.
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Hash игры</label>
+            <input type="text" class="form-input" id="fairness-hash-input" placeholder="Например: 229962f8288595..." />
+        </div>
+        
+        <button class="btn-primary" id="btn-check-fairness" onclick="simulateFairnessCheck()">ПРОВЕРИТЬ</button>
+        
+        <div class="fairness-result" id="fairness-result-box">
+            <div style="color:#4ade80; font-weight:800; font-size:14px; margin-bottom:12px; display:flex; align-items:center; gap:6px;" id="fairness-status">
+                <i data-lucide="check-circle-2" style="width:18px;height:18px;"></i> Хэш совпадает. Результаты верны!
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <div style="font-size:10px; opacity:0.5; margin-bottom:2px;">Server Seed:</div>
+                <div style="font-size:12px; word-break:break-all;" id="fairness-server-seed">a94a8fe5ccb19ba61c4c0873d391e987982fbbd3</div>
+            </div>
+            
+            <div style="margin-bottom:10px;">
+                <div style="font-size:10px; opacity:0.5; margin-bottom:2px;">Server Seed Hash (SHA256):</div>
+                <div style="font-size:12px; word-break:break-all;" id="fairness-server-hash">9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08</div>
+            </div>
+            
+            <div>
+                <div style="font-size:10px; opacity:0.5; margin-bottom:2px;">Client Seed:</div>
+                <div style="font-size:12px; word-break:break-all;" id="fairness-client-seed">client_random_string_123</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="bottom-nav">
@@ -1052,6 +1538,36 @@ document.getElementById(id).classList.add('active');
 document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
 el.classList.add('active');
 }
+
+function openModal(id) {
+    document.getElementById(id).classList.add('active');
+}
+
+function closeModal(id) {
+    document.getElementById(id).classList.remove('active');
+}
+
+function toggleGameDetails(el) {
+    const details = el.querySelector('.game-details-hidden');
+    if (details.style.display === 'block') {
+        details.style.display = 'none';
+    } else {
+        details.style.display = 'block';
+    }
+}
+
+function simulateFairnessCheck() {
+    document.getElementById('fairness-result-box').style.display = 'block';
+}
+
+document.querySelectorAll('.method-list').forEach(list => {
+    list.querySelectorAll('.method-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            list.querySelectorAll('.method-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+});
 </script>
 </body>
 </html>
